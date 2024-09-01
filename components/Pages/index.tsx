@@ -82,7 +82,7 @@ const Page: PageEl = (props, state, refresh, getProps) => {
           <sp-2/>
           <f-15>{(state.book.pages as number).toLocaleString("fa-IR")}</f-15>
         </f-c>
-        <g-b style={{backgroundColor: "#747276"}} onClick={()=>{
+        <g-b style={{backgroundColor: "#747276"}} onClick={async()=>{
           if(!state.cart)
           {
             state.cart = []
@@ -90,6 +90,7 @@ const Page: PageEl = (props, state, refresh, getProps) => {
           if(state.cart.includes(state.book.title)){
             state.cart = state.cart.filter(item => item !== state.book.title)
             state.form = null
+            await api("/api/testt", state.cart)
           } else {
             state.cart.push(state.book.title)
             state.form = null

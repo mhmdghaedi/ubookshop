@@ -12,16 +12,16 @@ export const Block =  props =>
         
         }} style={{boxShadow: "-4px 3px 28px 0px rgba(0,0,0,0.68)", 
         borderBottomRightRadius:10,borderBottomLeftRadius:10,backgroundColor:"#fff"
-        , borderTopLeftRadius:10,borderTopRightRadius:10}}>
+        , borderTopLeftRadius:10,borderTopRightRadius:10 , margin:"20px 10px"}}>
         <img
         className={global.styles.hover}
          src={props.book.imageLink}
-          style={{width:150,height:200,objectFit:"fill", borderTopLeftRadius:10,borderTopRightRadius:10}}
+          style={{width:200,height:200,objectFit:"fill", borderTopLeftRadius:10,borderTopRightRadius:10}}
 ></img>
-       <f-cc style={{width:"150px",textAlign:"center",height:35,paddingTop:5}}>
+       <f-cc style={{width:"200px",textAlign:"center",height:35,paddingTop:5 }}>
         {props.book.title}
        </f-cc>
-       <f-csb style={{width:"150px",direction:"ltr",paddingLeft:5 , height:40}}>
+       <f-csb style={{width:"200px",direction:"ltr",paddingLeft:5 , height:40}}>
         <c-cc>
         <del >
           {(props.book.price as number).toLocaleString("fa-IR")}
@@ -34,7 +34,7 @@ export const Block =  props =>
          style={{width:"40px",height:"40px",objectFit:"contain" ,paddingRight:10 }} ></img>}
          
        {props.state.cart.includes(props.book.title)?   <img src="https://irmapserver.ir/qepal/ok.svg" 
-       style={{height:30 ,width:30 , objectFit:"fill"}}/>:null}
+       style={{height:30 ,width:30 , objectFit:"fill", marginRight:10}}/>:null}
        </f-csb>
 
         </c-x>
