@@ -63,7 +63,7 @@ const Page: PageEl = (props, state, refresh, getProps) => {
         </f-c>
     
         <f-c>
-          <f-15>نویسنده: </f-15>
+          <f-15>نویسنده: </f-15> 
           <sp-2/>
           <f-15>{state.book.author}</f-15>
         </f-c>
@@ -130,7 +130,7 @@ export async function getServerSideProps(context) {
     let books = await global.db.collection("books").find({}).toArray()
 
     for(let book of books){
-      book.imageLink = "https://cdn.turing.team/research/ex/books/" + book.imageLink
+      book.imageLink = "https://cdn.ituring.ir/research/ex/books/" + book.imageLink
     }
     console.log(books)
  

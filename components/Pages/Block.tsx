@@ -30,10 +30,10 @@ export const Block =  props =>
           <f-13b>{((props.book.price as number)*0.8 ).toLocaleString("fa-IR")}</f-13b>
 
         </c-cc>
-        {props.state.cart.includes(props.book.title)?null:<img src="https://cdn.turing.team/research/18/shopping-cart.png"
+        {props.state.cart.includes(props.book.title)?null:<img src="https://cdn.ituring.ir/research/18/shopping-cart.png"
          style={{width:"40px",height:"40px",objectFit:"contain" ,paddingRight:10 }} ></img>}
          
-       {props.state.cart.includes(props.book.title)?   <img src="https://cdn.turing.team/qepal/ok.svg" 
+       {props.state.cart.includes(props.book.title)?   <img src="https://cdn.ituring.ir/qepal/ok.svg" 
        style={{height:30 ,width:30 , objectFit:"fill", marginRight:10}}/>:null}
        </f-csb>
 
