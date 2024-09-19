@@ -12,7 +12,16 @@ import WindowFloat from '../Libs/WindowFloat';
 import { Block } from './Block';
 
 export default p => Component(p, Page);
-const Page: PageEl = (props, state, refresh, getProps) => {
+const Page: PageEl = (props, state:
+  {
+    form: string,
+    book: {
+      title: string, author: string, country: string,
+      imageLink: string, price: number,
+      language: string, pages: number,
+    },
+    cart: Array<string>
+  }, refresh, getProps) => {
 
   let styles = global.styles
   let name = "کتاب ها"
@@ -32,6 +41,8 @@ const Page: PageEl = (props, state, refresh, getProps) => {
     c +=1;
 
   }
+
+  console.log(props.cart)
 
   return (
     <div style={{ direction: "rtl", minHeight: "11vh", }}>
@@ -98,7 +109,7 @@ const Page: PageEl = (props, state, refresh, getProps) => {
           }
           refresh()
         }}>
-          cart
+          {state.cart.includes(state.book.title) ? <f-13>remove</f-13> : <f-13>cart</f-13>}
         </g-b>
         </WindowFloat>:null}
       <Window title={name} style={{ minHeight: 400, margin: 10, width: "calc(100% - 20px)"}} >
@@ -128,18 +139,20 @@ export async function getServerSideProps(context) {
     role, path, devmod, userip, } = session;
 
     let books = await global.db.collection("books").find({}).toArray()
-
+    let cart = await global.db.collection("cart").find({}).toArray()
     for(let book of books){
       book.imageLink = "https://cdn.ituring.ir/research/ex/books/" + book.imageLink
     }
     console.log(books)
  
 
+    console.log(cart)
   return {
     props: {
       data: global.QSON.stringify({
         session,
         books,
+        cart,
         // nlangs,
       })
     },
