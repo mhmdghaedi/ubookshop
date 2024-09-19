@@ -26,17 +26,19 @@ const Page: PageEl = (props, state:
   let styles = global.styles
   let name = "کتاب ها"
 
-  state.cart = Array.from(new Set(state.cart))
 
 
+  if (!state.cart) {
+    state.cart = props.cart.map(o => o.title)
+  }
 
 
   let totalprice = 0;
   let c = 0;
-  for(let cart of state.cart)
+  for(let title of state.cart)
   {
 
-    let book = props.books.find(b=>b.title == cart)
+    let book = props.books.find(b=>b.title == title)
     if(book){totalprice +=(book.price as number)* 0.8}
     c +=1;
 
@@ -94,20 +96,18 @@ const Page: PageEl = (props, state:
           <f-15>{(state.book.pages as number).toLocaleString("fa-IR")}</f-15>
         </f-c>
         <g-b style={{backgroundColor: "#747276"}} onClick={async()=>{
-          if(!state.cart)
-          {
-            state.cart = []
-          }
+       
           if(state.cart.includes(state.book.title)){
             state.cart = state.cart.filter(item => item !== state.book.title)
             state.form = null
-            await api("/api/testt", state.cart)
+            refresh()
           } else {
             state.cart.push(state.book.title)
             state.form = null
-     
+            refresh()
           }
-          refresh()
+          await api("/api/testt", state.cart)
+          
         }}>
           {state.cart.includes(state.book.title) ? <f-13>remove</f-13> : <f-13>cart</f-13>}
         </g-b>
@@ -117,7 +117,8 @@ const Page: PageEl = (props, state:
 
         <w-cse style={{}}>
           {props.books.map(book =>{
-            return <Block book = {book}
+            return <Block 
+            book = {book}
             state ={state}
             refresh={refresh}/>
           })}
